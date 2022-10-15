@@ -10,13 +10,33 @@ using namespace std;
 
 class Solution{
 public:
+void insert(stack<int> &st,int val){
+    if(st.size()==0) {st.push(val);
+    return;}
+    else{
+        int temp=st.top();
+        st.pop();
+        insert(st,val);
+        st.push(temp);
+    }
+    return;
+}
+   void fun(stack<int> &st){
+       if(st.size()==0) return;
+       int temp=st.top();
+       st.pop();
+       fun(st);
+       insert(st,temp);
+   }
     stack<int> Reverse(stack<int> St){
-        stack<int> ans;
+       /* stack<int> ans;
         while(!St.empty()){
             ans.push(St.top());
             St.pop();
         }
-        return ans;
+        return ans; */
+        fun(St);
+        return St;
     }
 };
 
